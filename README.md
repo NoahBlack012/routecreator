@@ -9,6 +9,7 @@ Selenium
 To do:
 
 Setup
+
 { }Download dependancies
 
 { } Setup Database
