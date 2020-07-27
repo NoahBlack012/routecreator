@@ -4,8 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Route View</title>
+    <script src = "{{ url_for('static', filename = 'js/newroute.js') }}"></script>
 </head>
 <body>
-    
+    <form method="POST" id = "newroute">
+        <input type = "text" name = "routetitle" placeholder="Enter the title of the route">
+        <input type = "text" name = "startpoint" placeholder="Enter the starting point">
+        <input type = "text" name = "endpoint" placeholder="Enter the end point">
+        <input type = "submit" value="Create New Route">
+    </form>
+    <form action = "{{ url_for('savedroutes') }}">
+        <button>Open a saved route</button>
+    </form>
+    <div id = "routetitle"></div>
+    <div id = "startpoint"></div>
+    <div id = "endpoint"></div>
+    <div id = "triptime"></div>
+    <div id = "distance"></div>
+    <div id = "directions"></div>
+    <a id = "url" href = ""></a>
 </body>
 </html>

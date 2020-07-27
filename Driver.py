@@ -14,12 +14,13 @@ class driver:
         time.sleep(3)
         direction_button = self.driver.find_element_by_xpath('//*[@id="searchbox-directions"]')
         direction_button.click()
-        time.sleep(4)
+        time.sleep(8)
         start_box = self.driver.find_element_by_xpath('/html/body/jsl/div[3]/div[9]/div[3]/div[1]/div[2]/div/div[3]/div[1]/div[1]/div[2]/div/div/input')
         start_box.send_keys(self.start)
         destination_box = self.driver.find_element_by_xpath('/html/body/jsl/div[3]/div[9]/div[3]/div[1]/div[2]/div/div[3]/div[1]/div[2]/div[2]/div/div/input')
         destination_box.send_keys(self.end)
         destination_box.send_keys(Keys.ENTER)
+        url = self.driver.current_url
         drive_btn = self.driver.find_element_by_xpath('//*[@id="omnibox-directions"]/div/div[2]/div/div/div[1]/div[2]/button/div[1]')
         drive_btn.click()
         time.sleep(5)
@@ -30,7 +31,6 @@ class driver:
         time.sleep(2)
         directions = self.driver.find_element_by_xpath('//*[@id="pane"]/div/div[1]/div/div/div[5]/div').text
         directions = directions[:-277]
-        url = self.driver.current_url
         self.driver.quit()
         return trip_time, distance, directions, url
 

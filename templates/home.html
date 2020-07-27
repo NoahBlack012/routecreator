@@ -6,6 +6,11 @@
     <title>Home</title>
 </head>
 <body>
-    
+    <form action = "{{ url_for('routeview') }}">
+        <button>Create a new route</button>
+    </form>
+    <form action = "{{ url_for('savedroutes') }}">
+        <button>Open a saved route</button>
+    </form>
 </body>
 </html>
