@@ -11,7 +11,7 @@ Setup
 {X} Setup Database
 { } Create DB tables
 {X} Setup app.py file
-{ } Setup route.py file (Route object)
+{X} Setup route.py file (Route object)
 {X} Setup webdriver.py file (Web scraper)
 {X} Setup templates and static files folders
 
@@ -19,16 +19,22 @@ Webscraper.py
 {X} Setup webdriver
 {X} Enter route info from user onto google maps
 {X} Get map img, total time, and turn by turn
-{ } Save all info in route object
+{X} Save all info in route object
 
 Route.py
-{ } Create route object that saves route name, start and end points, route image, distance, and traveling time
-{ } Create a methods that creates a string route object
+{X} Create route object that saves route name, start and end points, route image, distance, and traveling time
+{X} Create a methods that creates a string route object
 
 app.py
-{ } Create login and new user page
-{ } Create new route page
-{ } Create route view page
-{ } Create saved routes page
+{X} Create login and new user page
+{X} Create new route page
+{X} Create route view page
+{X} Create saved routes page
+
+CSS
+{ } Style login page
+{ } Style home page
+{ } Style route view page
+{ } Style saved routes page
 
 
