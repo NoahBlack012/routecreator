@@ -16,8 +16,9 @@ Setup
 {X} Setup templates and static files folders
 
 Webscraper.py
-{ } Enter route info from user onto google maps
-{ } Get map img, total time, and turn by turn
+{X} Setup webdriver
+{X} Enter route info from user onto google maps
+{X} Get map img, total time, and turn by turn
 { } Save all info in route object
 
 Route.py
