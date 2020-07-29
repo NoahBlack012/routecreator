@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#newroute").onsubmit = function (e) {
+        // Create JSON request for newroute page
         const request = new XMLHttpRequest();
         request.open('POST', "/newroute");
         request.onload = () => {
@@ -12,6 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const distance = data.distance;
           const directions = data.directions;
           const url = data.url;
+          
+          // Display route data on page
           document.querySelector("#routetitle").innerHTML = title;
           document.querySelector("#startpoint").innerHTML = startpoint;
           document.querySelector("#endpoint").innerHTML = endpoint;
@@ -20,6 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
           document.querySelector("#directions").innerHTML = directions;
           document.querySelector("#url").innerHTML = "Map URL";
           document.querySelector("#url").href = url; 
+
+          //Make save button visible
+          document.querySelector("#savenote").style.display = "block";
         }
 
         const formdata = new FormData(this); // read form's data

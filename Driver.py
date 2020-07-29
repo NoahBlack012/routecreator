@@ -16,6 +16,8 @@ class driver:
         direction_button.click()
         time.sleep(8)
         start_box = self.driver.find_element_by_xpath('/html/body/jsl/div[3]/div[9]/div[3]/div[1]/div[2]/div/div[3]/div[1]/div[1]/div[2]/div/div/input')
+        for i in range(13):
+            start_box.send_keys(Keys.BACK_SPACE)
         start_box.send_keys(self.start)
         destination_box = self.driver.find_element_by_xpath('/html/body/jsl/div[3]/div[9]/div[3]/div[1]/div[2]/div/div[3]/div[1]/div[2]/div[2]/div/div/input')
         destination_box.send_keys(self.end)
