@@ -16,6 +16,12 @@
     <form action = "{{ url_for('savedroutes') }}">
         <button>Open a saved route</button>
     </form>
+    <form action = "{{ url_for('save') }}" style = "display: none;" method="POST" id = "savenote">
+        <input type="submit" value = "Save Note">
+    </form>
+    <form action = "{{ url_for('logout') }}" method = "POST">
+        <input type="submit" value="Logout">
+    </form>
     <div id = "routetitle"></div>
     <div id = "startpoint"></div>
     <div id = "endpoint"></div>
@@ -23,8 +29,5 @@
     <div id = "distance"></div>
     <div id = "directions"></div>
     <a id = "url" href = ""></a>
-    <form action = "{{ url_for('save') }}" style = "display: none;" method="POST" id = "savenote">
-        <input type="submit" value = "Save Note">
-    </form>
 </body>
 </html>

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, request, url_for, redirect, session
 import os
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 from Route import route
@@ -18,7 +18,6 @@ app.secret_key = "nb12"#secret key for sessions
 #Init database engine
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
-
 
 @app.route("/")
 def login():
@@ -41,12 +40,10 @@ def home():
                     #Login the user when the username and password are correct
                     session['login'] = True
                     session['user'] = user
-                    session['password'] = password
                     session['userid'] = userid
                     return render_template("home.html")
-        return redirect(url_for('login'))
-    else:
-        return redirect(url_for('login'))
+    #Redirect to login if user got the username or password wrong or didn't go through login
+    return redirect(url_for('login'))
 
 @app.route("/newroute", methods = ["POST"])
 def newroute():
@@ -58,19 +55,55 @@ def newroute():
     trip_time, distance, directions, url = webdriver.run_driver()
     current_route = route(title, startpoint, endpoint, trip_time, directions, url)
     routes.append(current_route)
+
+    #Saving attributes of the current route in session varibles
+    session['title'] = title
+    session['startpoint'] = startpoint
+    session['endpoint'] = endpoint
+    session['trip_time'] = trip_time
+    session['distance'] = distance
+    session['directions'] = directions
+    session['url'] = url
+    session['url'] = f"{session['url']}"
+    
     json_output = {"title": title, "startpoint":startpoint, "endpoint": endpoint,
         "trip_time": trip_time, "distance": distance, "directions": directions, "url": url}
     return jsonify(json_output)
 
 @app.route("/save", methods = ["POST"])
 def save():
-    return redirect(url_for('routeview'))
+    directions_list = []
+    #Check if route is in database
+    db_titles = db.execute("SELECT title FROM routes WHERE userid = :userid", {"userid": session['userid']}).fetchall()
+    if not db_titles == []:
+        for db_title in db_titles:
+            if session['title'] == db_title:
+                db.execute("DELETE FROM routes WHERE title = :title and userid = :userid", {'title': session['title'], 'userid': session['userid']})
+    for line in session['directions']:
+        if line != '\n':
+            directions_list.append(line)
+        else: 
+            directions_list.append(" ")
+    rstrip_directions = ''.join(directions_list)
+    #Add route to database
+    db.execute("INSERT INTO routes (userid, title, startpoint, endpoint, trip_time, distance, directions, url) VALUES (:userid, :title, :startpoint, :endpoint, :trip_time, :distance, :directions, :url)", 
+        {'userid': session['userid'], 'title': session['title'], 'startpoint': session['startpoint'], 'endpoint': session['endpoint'], 'trip_time': session['trip_time'], 'distance':  session['distance'], 
+        'directions': rstrip_directions, 'url': session['url']})
+    db.commit()
+    return redirect(url_for('routeview'), code=307)
 
 @app.route("/routeview", methods = ["POST"])
 def routeview():
     return render_template("routeview.html")
 
-@app.route("/savedroutes")
+@app.route("/savedroutes", methods = ["POST"])
 def savedroutes():
     return render_template("savedroutes.html")
+
+@app.route("/logout", )
+def logout():
+    session['login'] = False
+    session['user'] = None
+    session['userid'] = None
+    return redirect(url_for('login'))
 

@@ -23,7 +23,7 @@ class driver:
         destination_box.send_keys(self.end)
         destination_box.send_keys(Keys.ENTER)
         url = self.driver.current_url
-        drive_btn = self.driver.find_element_by_xpath('//*[@id="omnibox-directions"]/div/div[2]/div/div/div[1]/div[2]/button/div[1]')
+        drive_btn = self.driver.find_element_by_xpath('//*[@id="omnibox-directions"]/div/div[2]/div/div/div[1]/div[2]/button')
         drive_btn.click()
         time.sleep(5)
         trip_time = self.driver.find_element_by_xpath('//*[@id="section-directions-trip-0"]/div[1]/div[1]/div[1]/div[1]/span[1]').text
