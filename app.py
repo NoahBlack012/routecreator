@@ -12,8 +12,7 @@ from Driver import driver
 #Init app
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.secret_key = "nb12"#secret key for sessions
-
+app.secret_key = "xgovctjmgfqdwvxihtkj"#secret key for sessions
 
 #Init database engine
 engine = create_engine(os.getenv("DATABASE_URL"))
@@ -41,7 +40,7 @@ def home():
                     session['login'] = True
                     session['user'] = user
                     session['userid'] = userid
-                    return render_template("home.html")
+                    return redirect(url_for('routeview'), code=307)
     #Redirect to login if user got the username or password wrong or didn't go through login
     return redirect(url_for('login'))
 
@@ -98,9 +97,14 @@ def routeview():
 
 @app.route("/savedroutes", methods = ["POST"])
 def savedroutes():
-    return render_template("savedroutes.html")
+    user_route_titles = db.execute("SELECT title FROM routes WHERE userid = :userid", {'userid': session['userid']}).fetchall()[0]
+    titles = []
+    for title in user_route_titles:
+        titles.append(title)
+    json_output = {'titles': titles}
+    return jsonify(json_output)
 
-@app.route("/logout", )
+@app.route("/logout", methods = ["POST"])
 def logout():
     session['login'] = False
     session['user'] = None

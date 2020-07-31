@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Route View</title>
+    <script src = "{{ url_for('static', filename = 'js/savedroutes.js') }}"></script>
     <script src = "{{ url_for('static', filename = 'js/newroute.js') }}"></script>
 </head>
 <body>
@@ -13,8 +14,8 @@
         <input type = "text" name = "endpoint" placeholder="Enter the end point">
         <input type = "submit" value="Create New Route">
     </form>
-    <form action = "{{ url_for('savedroutes') }}">
-        <button>Open a saved route</button>
+    <form action = "{{ url_for('savedroutes') }}" id = 'openroute' method="POST">
+        <input type="submit" value="Open a saved route">
     </form>
     <form action = "{{ url_for('save') }}" style = "display: none;" method="POST" id = "savenote">
         <input type="submit" value = "Save Note">
@@ -22,12 +23,18 @@
     <form action = "{{ url_for('logout') }}" method = "POST">
         <input type="submit" value="Logout">
     </form>
-    <div id = "routetitle"></div>
-    <div id = "startpoint"></div>
-    <div id = "endpoint"></div>
-    <div id = "triptime"></div>
-    <div id = "distance"></div>
-    <div id = "directions"></div>
-    <a id = "url" href = ""></a>
+    <div id="routeinfo">
+        <div id = "routetitle"></div>
+        <div id = "startpoint"></div>
+        <div id = "endpoint"></div>
+        <div id = "triptime"></div>
+        <div id = "distance"></div>
+        <div id = "directions"></div>
+        <a id = "url" href = ""></a>
+    </div>
+
+    <div id="savedroutes">
+        <ul id = 'routes_title_ul'></ul>
+    </div>
 </body>
 </html>
