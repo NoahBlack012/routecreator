@@ -104,6 +104,19 @@ def savedroutes():
     json_output = {'titles': titles}
     return jsonify(json_output)
 
+@app.route("/openroute/<routetitle>", methods = ["POST"])
+def openroute(routetitle):
+    # Get route from data and send details to jsonify
+    route_data = db.execute("SELECT startpoint, endpoint, trip_time, distance, directions, url FROM routes WHERE userid = :userid AND title = :title", {'userid': session['userid'], 'title': routetitle}).fetchall()[0]
+    start = route_data[0]
+    end = route_data[1]
+    time = route_data[2]
+    distance = route_data[3]
+    directions = route_data[4]
+    url = route_data[5]
+    json_output = {'title': routetitle, 'start': start, 'end': end, 'time': time, 'distance': distance, 'directions': directions, 'url': url}
+    return jsonify(json_output)
+
 @app.route("/logout", methods = ["POST"])
 def logout():
     session['login'] = False

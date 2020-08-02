@@ -26,6 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
           //Make save button visible
           document.querySelector("#savenote").style.display = "block";
+
+          // Make saved routes disappear and display curent route
+          document.querySelector('#routeinfo').style.display = 'block';
+          document.querySelector('#savedroutes').style.display = 'none';
         }
 
         const formdata = new FormData(this); // read form's data
