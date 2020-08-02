@@ -22,6 +22,7 @@ class driver:
         destination_box = self.driver.find_element_by_xpath('/html/body/jsl/div[3]/div[9]/div[3]/div[1]/div[2]/div/div[3]/div[1]/div[2]/div[2]/div/div/input')
         destination_box.send_keys(self.end)
         destination_box.send_keys(Keys.ENTER)
+        time.sleep(3)
         url = self.driver.current_url
         drive_btn = self.driver.find_element_by_xpath('//*[@id="omnibox-directions"]/div/div[2]/div/div/div[1]/div[2]/button')
         drive_btn.click()
