@@ -9,7 +9,7 @@ To do:
 Setup
 {X}Download dependancies
 {X} Setup Database
-{ } Create DB tables
+{X} Create DB tables
 {X} Setup app.py file
 {X} Setup route.py file (Route object)
 {X} Setup webdriver.py file (Web scraper)
