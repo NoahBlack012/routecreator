@@ -9,11 +9,12 @@
 </head>
 <body>
     <form method="POST" id = "newroute">
-        <input type = "text" name = "routetitle" placeholder="Enter the title of the route">
+        <input type = "text" name = "routetitle" placeholder="Enter the title of the route" id = 'newtitle'>
         <input type = "text" name = "startpoint" placeholder="Enter the starting point">
         <input type = "text" name = "endpoint" placeholder="Enter the end point">
         <input type = "submit" value="Create New Route">
     </form>
+    <div id = "warning" style="color:red"></div>
     <form action = "{{ url_for('savedroutes') }}" id = 'openroute' method="POST">
         <input type="submit" value="Open a saved route">
     </form>
