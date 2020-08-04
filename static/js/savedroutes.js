@@ -1,21 +1,6 @@
-function open_route(id) {
-    alert ("Open route");
-    let request = new XMLHttpRequest();
-    const url = '/openroute/' + id; 
-    request.open('POST', url);
-    request.onload = () => {
-        //const route_data = JSON.parse(request.responseText);
-        // Get route data 
-        // Display route data
-    }
-    // Send XML request to open route
-    // Make page display that routes properties
-    const data = new FormData();
-    request.send(data);
-    return false; 
-}      
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("#openroute").onsubmit = function () { 
+    document.querySelector("#openroute").onsubmit = function () {
+        // Display all saved routes 
         let display_route = false; 
         document.querySelector("#savedroutes").innerHTML = "";
         let request = new XMLHttpRequest();
@@ -23,20 +8,22 @@ document.addEventListener("DOMContentLoaded", () => {
         request.onload = () => {
             const data = JSON.parse(request.responseText);
             const titles = data.titles; 
-            let title_size = Object.keys(titles).length
+            let title_size = Object.keys(titles).length // Get lenth of title list
             for (i = 0; i < title_size; i++) {
-                // Make sure onclick is applied to button element 
-                // Change button var name
+                // Create and display the titles as submit buttons
+                let breakpoint = document.createElement('br');
                 title = titles[i]
                 let title_button = document.createElement('input');
                 title_button.type = 'submit';
                 title_button.value = title;
                 title_button.id = title;
+                // Writing function for when title button is clicked
                 title_button.onclick = () => {
                     let route_request = new XMLHttpRequest();
                     const route = '/openroute/' + title_button.id; 
                     route_request.open('POST', route);
                     route_request.onload = () => {
+                        // Get route data from json data
                         const route_data = JSON.parse(route_request.responseText);
                         let title = route_data.title;
                         let start = route_data.start;
@@ -59,12 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.querySelector('#routeinfo').style.display = 'block';
                     document.querySelector('#savedroutes').style.display = 'none';
                     display_route = true;
-                    //document.querySelector("#saved")
+                    // Send the request
                     const data = new FormData();
                     route_request.send(data);
                     return false; 
                 };
+                // Append created elements to Div
                 document.querySelector("#savedroutes").appendChild(title_button);
+                document.querySelector("#savedroutes").appendChild(breakpoint); // Add breakpoint so buttons are not side by side
             }
             if (display_route) {
                 // Make current route info appear and saved routes disappear
@@ -76,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.querySelector('#savedroutes').style.display = 'block';
             }
         }
+        // Send the request
         const formdata = new FormData();
         request.send(formdata);
         return false; 
