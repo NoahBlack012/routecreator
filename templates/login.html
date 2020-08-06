@@ -9,7 +9,14 @@
     <form action = "{{ url_for('home') }}" method = "POST" autocomplete="off">
         <input type="text" name = "user" placeholder="Username">
         <input type="password" name = "password" placeholder="Password">
+        <br>
         <input type = "submit" value = "Login">
     </form>
+
+    <form action = "{{ url_for('signup') }}" method="POST">
+        <input type="submit" value="Create An Account">
+    </form>
+
+    <h3 style="color: green;">{{ alert }}</h3>
 </body>
 </html>

@@ -27,21 +27,32 @@ def check_dbroutes(arr, item):
     return False
 
 
-@app.route("/")
+@app.route("/", methods = ["GET", "POST"])
 def login():
     session['login'] = False
     global routes
     routes = []
-    return render_template("login.html")
+    new_user = request.form.get("new_user")
+    new_password = request.form.get("new_password")
+    if new_user:
+        db_users = db.execute("SELECT username FROM users").fetchall()[0]
+        for db_user in db_users:
+            if db_user == new_user:
+                return redirect(url_for('signup', alert = f"{new_user} is already in user. Please select a different username"))
+        db.execute("INSERT INTO users (username, password) VALUES (:new_user, :new_password)", {"new_user": new_user, "new_password": new_password})
+        #db.execute("INSERT INTO routes (userid, title) VALUES (:userid, :title)", {'userid': session['userid'], 'title': session['title']})
+        db.commit()
+        return render_template("login.html", alert = "Account has been created successfully")
+    return render_template("login.html", alert = "")
 
-@app.route("/home", methods = ["POST", 'GET'])
+@app.route("/home", methods = ["POST", "GET"])
 def home():
     if request.method == "POST":
         user = request.form.get("user")
         password = request.form.get("password")
-        db_users = db.execute("SELECT username FROM users").fetchall()[0]
+        db_users = db.execute("SELECT username FROM users").fetchall()
         for db_user in db_users:
-            if db_user == user:
+            if db_user[0] == user:
                 userid = db.execute("SELECT userid FROM users WHERE username=:user", {"user": user}).fetchall()[0][0]
                 db_password = db.execute("SELECT password FROM users WHERE userid=:userid", {"userid": userid}).fetchall()[0][0]
                 if password == db_password:
@@ -161,4 +172,11 @@ def checkroutes():
     else:
         json_res = {"duplicate": 0}
     return jsonify(json_res)
+
+@app.route("/signup", methods = ["POST", "GET"])
+def signup():
+    alert = request.args.get("alert")
+    if not alert:
+        alert = ""
+    return render_template("signup.html", alert = alert)
 

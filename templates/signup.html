@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create An Account</title>
+</head>
+<body>
+    <form action = "{{ url_for('login') }}" method="POST" autocomplete="off">
+        <input type="text" name="new_user" id="new_user" placeholder="Username">
+        <input type="password" name="new_password" id="new_password" placeholder="Password">
+        <input type="submit" value="Create Account">
+    </form>
+    <h3 style="color: red;">{{ alert }}</h3>
+</body>
+</html>
