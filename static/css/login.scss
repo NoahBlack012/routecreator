@@ -1,0 +1,91 @@
+$bgcol: #004E57;
+$containercol: #42CEDD;
+$textcol: #1A5157;
+$itemcol: #00C1D6;
+$focuscol: #0093A3;
+
+$titlecol1: red;
+$titlecol2: violet;
+
+body{
+    background-color: $bgcol;
+}
+
+.heading {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    align-items: center;
+    background-color: $textcol;
+}
+
+#logo{
+    width: 20%;
+    height: 20%;
+    animation-name: logoanimation;
+    animation-iteration-count: infinite;
+    animation-duration: 10s;
+}
+
+@keyframes logoanimation {
+    33% {transform: rotate(-20deg);}
+    66% {transform: rotate(20deg);}
+    100% {transform: rotate(0deg);}
+}
+
+.heading:hover{
+    animation-name: titleanimation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes titleanimation {
+    0% {color: $titlecol1;}
+    50% {color: $titlecol2;}
+    100% {color: $titlecol1;}
+}
+
+#loginform{
+    color: $containercol;
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+    align-items: center;
+    border: 1 px solid $textcol;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+.login-grid{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    background-color: $containercol;
+    height: 100%;
+}
+
+.user, .password, .login, .newaccount{
+    background-color: $itemcol;
+    text-align: center;
+    display: inline-block;
+    font-size: 12pt;
+    border: none;
+    margin: 0.3em;
+    width: 15em;
+    height: 3em;
+    color: $textcol;
+    transition-property: width, font-size, padding;
+    transition-duration: 1s;
+}
+
+.user::placeholder, .password::placeholder {
+    color: $textcol;
+}
+
+
+.user:focus, .password:focus, .login:hover, .newaccount:hover {
+    background-color: $focuscol;
+    width: 20em;
+    font-size: 20pt;
+    padding: auto;
+}
+
+

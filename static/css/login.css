@@ -1,0 +1,150 @@
+body {
+  background-color: #004E57;
+}
+
+.heading {
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  grid-column-end: 3;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #1A5157;
+}
+
+#logo {
+  width: 20%;
+  height: 20%;
+  -webkit-animation-name: logoanimation;
+          animation-name: logoanimation;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-duration: 10s;
+          animation-duration: 10s;
+}
+
+@-webkit-keyframes logoanimation {
+  33% {
+    -webkit-transform: rotate(-20deg);
+            transform: rotate(-20deg);
+  }
+  66% {
+    -webkit-transform: rotate(20deg);
+            transform: rotate(20deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@keyframes logoanimation {
+  33% {
+    -webkit-transform: rotate(-20deg);
+            transform: rotate(-20deg);
+  }
+  66% {
+    -webkit-transform: rotate(20deg);
+            transform: rotate(20deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+.heading:hover {
+  -webkit-animation-name: titleanimation;
+          animation-name: titleanimation;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes titleanimation {
+  0% {
+    color: red;
+  }
+  50% {
+    color: violet;
+  }
+  100% {
+    color: red;
+  }
+}
+
+@keyframes titleanimation {
+  0% {
+    color: red;
+  }
+  50% {
+    color: violet;
+  }
+  100% {
+    color: red;
+  }
+}
+
+#loginform {
+  color: #42CEDD;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 5% 90% 5%;
+      grid-template-columns: 5% 90% 5%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1 px solid #1A5157;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.login-grid {
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  grid-column-end: 3;
+  background-color: #42CEDD;
+  height: 100%;
+}
+
+.user, .password, .login, .newaccount {
+  background-color: #00C1D6;
+  text-align: center;
+  display: inline-block;
+  font-size: 12pt;
+  border: none;
+  margin: 0.3em;
+  width: 15em;
+  height: 3em;
+  color: #1A5157;
+  -webkit-transition-property: width, font-size, padding;
+  transition-property: width, font-size, padding;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+.user::-webkit-input-placeholder, .password::-webkit-input-placeholder {
+  color: #1A5157;
+}
+
+.user:-ms-input-placeholder, .password:-ms-input-placeholder {
+  color: #1A5157;
+}
+
+.user::-ms-input-placeholder, .password::-ms-input-placeholder {
+  color: #1A5157;
+}
+
+.user::placeholder, .password::placeholder {
+  color: #1A5157;
+}
+
+.user:focus, .password:focus, .login:hover, .newaccount:hover {
+  background-color: #0093A3;
+  width: 20em;
+  font-size: 20pt;
+  padding: auto;
+}
+/*# sourceMappingURL=login.css.map */
