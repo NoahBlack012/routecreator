@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#openroute").onsubmit = function () {
+        document.querySelector('#savedroutes').style.display = 'inline';
         // Display all saved routes 
         let display_route = false; 
         document.querySelector("#savedroutes").innerHTML = "";

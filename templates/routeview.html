@@ -4,36 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Route View</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/routeview.css') }}">
     <script src = "{{ url_for('static', filename = 'js/savedroutes.js') }}"></script>
     <script src = "{{ url_for('static', filename = 'js/newroute.js') }}"></script>
+    <link rel="icon" href="{{ url_for('static', filename = 'imgs/logo.svg') }}" type = 'image/svg'>
 </head>
 <body>
-    <form method="POST" id = "newroute">
-        <input type = "text" name = "routetitle" placeholder="Enter the title of the route" id = 'newtitle'>
-        <input type = "text" name = "startpoint" placeholder="Enter the starting point">
-        <input type = "text" name = "endpoint" placeholder="Enter the end point">
-        <input type = "submit" value="Create New Route">
-    </form>
-    <div id = "warning" style="color:red"></div>
-    <form action = "{{ url_for('savedroutes') }}" id = 'openroute' method="POST">
-        <input type="submit" value="Open a saved route">
-    </form>
-    <form action = "{{ url_for('save') }}" style = "display: none;" method="POST" id = "savenote">
-        <input type="submit" value = "Save Note">
-    </form>
-    <form action = "{{ url_for('logout') }}" method = "POST">
-        <input type="submit" value="Logout">
-    </form>
-    <div id="routeinfo">
-        <div id = "routetitle"></div>
-        <div id = "startpoint"></div>
-        <div id = "endpoint"></div>
-        <div id = "triptime"></div>
-        <div id = "distance"></div>
-        <div id = "directions"></div>
-        <a id = "url" href = ""></a>
-    </div>
+    <div class="grid">
+        <div class="grid-item">
+            <div class="title">
+                <img id = 'title-logo' src="{{ url_for('static', filename = 'imgs/titlelogo.svg') }}" alt="N-Routes">
+            </div>
+            <form action = "{{ url_for('logout') }}" method = "POST" id = 'logout'>
+                <input type="submit" value="Logout" id = 'btn'>
+            </form>
+            <div class="formgrid">
+                <form method="POST" id = "newroute" autocomplete="off">
+                    <input type = "text" name = "routetitle" placeholder="Enter the title of the route" id = 'newtitle'><br>
+                    <input type = "text" name = "startpoint" placeholder="Enter the starting point"><br>
+                    <input type = "text" name = "endpoint" placeholder="Enter the destination"><br>
+                    <input type = "submit" value="Create New Route" id = 'btn'>
+                </form>
+                <div id = "warning"></div>
+                <form action = "{{ url_for('savedroutes') }}" id = 'openroute' method="POST">
+                    <input type="submit" value="Open a saved route" id = 'btn'>
+                </form>
+                <form action = "{{ url_for('save') }}" method="POST" id = "saveroute">
+                    <input type="submit" value = "Save Route" id = 'btn'>
+                </form>
+            </div>
+        </div>
+        <div id="routeinfo">
+            <h1 class = 'routedata' id = "routetitle"></h1>
+            <div class = 'routedata' id = "startpoint"></div>
+            <div class = 'routedata' id = "endpoint"></div>
+            <div class = 'routedata' id = "triptime"></div>
+            <div class = 'routedata' id = "distance"></div>
+            <div class = 'routedata' id = "directions"></div>
+            <a class = 'routedata' id = "url" href = ""></a>
+        </div>
 
-    <div id="savedroutes"></div>
+        <div class="container">
+            <div class="vertical-center">
+                <h1><span id="loadingword">Loading Your Route </span></h1>
+            </div>
+        </div>
+        <img src="{{ url_for('static', filename = 'imgs/loadinglogo.svg') }}" alt="Logo" id ="logo">
+
+        <div id="savedroutes"></div>
+    </div>
 </body>
 </html>
