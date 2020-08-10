@@ -1,9 +1,13 @@
+#Flask modules
 from flask import Flask, render_template, jsonify, request, url_for, redirect, session
+
 import os
 
+#Database modules
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import scoped_session, sessionmaker
 
+#Webdriver and route modules
 from Route import route
 from Driver import driver
 #$env:FLASK_APP='app.py'
@@ -75,7 +79,7 @@ def newroute():
     webdriver = driver(startpoint, endpoint)
     trip_time, distance, directions, url = webdriver.run_driver()
     current_route = route(title, startpoint, endpoint, trip_time, directions, url)
-    routes.append(current_route)
+  #  routes.append(current_route)
 
     #Saving attributes of the current route in session varibles
     session['title'] = title
