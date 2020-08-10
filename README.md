@@ -32,9 +32,9 @@ app.py
 {X} Create saved routes page
 
 CSS
-{ } Style login page
-{ } Style home page
-{ } Style route view page
-{ } Style saved routes page
+{X} Style login page
+{X} Style home page
+{X} Style route view page
+{X} Style saved routes page
 
 
