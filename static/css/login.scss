@@ -4,9 +4,6 @@ $textcol: #1A5157;
 $itemcol: #00C1D6;
 $focuscol: #0093A3;
 
-$titlecol1: red;
-$titlecol2: violet;
-
 body{
     background-color: $bgcol;
 }
@@ -30,18 +27,6 @@ body{
     33% {transform: rotate(-20deg);}
     66% {transform: rotate(20deg);}
     100% {transform: rotate(0deg);}
-}
-
-.heading:hover{
-    animation-name: titleanimation;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-}
-
-@keyframes titleanimation {
-    0% {color: $titlecol1;}
-    50% {color: $titlecol2;}
-    100% {color: $titlecol1;}
 }
 
 #loginform{
@@ -73,7 +58,7 @@ body{
     height: 3em;
     color: $textcol;
     transition-property: width, font-size, padding;
-    transition-duration: 1s;
+    transition-duration: 0.5s;
 }
 
 .user::placeholder, .password::placeholder {
@@ -83,7 +68,7 @@ body{
 
 .user:focus, .password:focus, .login:hover, .newaccount:hover {
     background-color: $focuscol;
-    width: 20em;
+    width: 17em;
     font-size: 20pt;
     padding: auto;
 }

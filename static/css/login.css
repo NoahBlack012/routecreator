@@ -53,39 +53,6 @@ body {
   }
 }
 
-.heading:hover {
-  -webkit-animation-name: titleanimation;
-          animation-name: titleanimation;
-  -webkit-animation-duration: 4s;
-          animation-duration: 4s;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-}
-
-@-webkit-keyframes titleanimation {
-  0% {
-    color: red;
-  }
-  50% {
-    color: violet;
-  }
-  100% {
-    color: red;
-  }
-}
-
-@keyframes titleanimation {
-  0% {
-    color: red;
-  }
-  50% {
-    color: violet;
-  }
-  100% {
-    color: red;
-  }
-}
-
 #loginform {
   color: #42CEDD;
   display: -ms-grid;
@@ -121,8 +88,8 @@ body {
   color: #1A5157;
   -webkit-transition-property: width, font-size, padding;
   transition-property: width, font-size, padding;
-  -webkit-transition-duration: 1s;
-          transition-duration: 1s;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
 }
 
 .user::-webkit-input-placeholder, .password::-webkit-input-placeholder {
@@ -143,7 +110,7 @@ body {
 
 .user:focus, .password:focus, .login:hover, .newaccount:hover {
   background-color: #0093A3;
-  width: 20em;
+  width: 17em;
   font-size: 20pt;
   padding: auto;
 }

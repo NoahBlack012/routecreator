@@ -13,12 +13,13 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  text-align: center;
 }
 
 .heading {
-  -ms-grid-row: 1;
-      grid-row-start: 1;
-  grid-row-end: 2;
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+  grid-row-end: 3;
   -ms-grid-column: 2;
       grid-column-start: 2;
   grid-column-end: 3;
@@ -96,8 +97,8 @@ body {
   color: #1A5157;
   -webkit-transition-property: width, font-size, padding;
   transition-property: width, font-size, padding;
-  -webkit-transition-duration: 1s;
-          transition-duration: 1s;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
 }
 
 .user::-webkit-input-placeholder, .password::-webkit-input-placeholder {
