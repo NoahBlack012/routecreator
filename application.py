@@ -18,7 +18,7 @@ from Driver import driver
 #Init app
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.secret_key = "xgovctjmgfqdwvxihtkj"#secret key for sessions
+app.secret_key = os.getenv("secret_key")#"xgovctjmgfqdwvxihtkj"#secret key for sessions
 
 #Init database engine
 engine = create_engine(os.getenv("DATABASE_URL"))
