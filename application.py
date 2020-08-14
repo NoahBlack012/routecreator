@@ -93,10 +93,11 @@ def newroute():
 
     db_titles = db.execute("SELECT title FROM routes WHERE userid = :userid", {"userid": session['userid']}).fetchall()
     duplicate = check_dbroutes(db_titles, session['title'])
-    
+      
     json_output = {"title": title, "startpoint":startpoint, "endpoint": endpoint,
         "trip_time": trip_time, "distance": distance, "directions": directions, "url": url, "duplicate": duplicate}
     return jsonify(json_output)
+
 
 @app.route("/save", methods = ["POST", "GET"])
 def save():
@@ -183,4 +184,3 @@ def signup():
     if not alert:
         alert = ""
     return render_template("signup.html", alert = alert)
-
