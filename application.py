@@ -10,15 +10,11 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 #Webdriver and route modules
 from Route import route
 from Driver import driver
-#$env:FLASK_APP='app.py'
-#$env:DATABASE_URL='postgres://kesybfycsywmcg:0850bcd5d782fff8dc8ef127544875e0aa1d378472c5504380aa6f3cb6aaa890@ec2-52-22-216-69.compute-1.amazonaws.com:5432/daas6ugs49amc0'
 
-#os.environ['FLASK_APP'] = 'app.py'
-#os.environ['DATABASE_URL'] = 'postgres://kesybfycsywmcg:0850bcd5d782fff8dc8ef127544875e0aa1d378472c5504380aa6f3cb6aaa890@ec2-52-22-216-69.compute-1.amazonaws.com:5432/daas6ugs49amc0'
 #Init app
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-app.secret_key = os.getenv("secret_key")#"xgovctjmgfqdwvxihtkj"#secret key for sessions
+app.secret_key = os.getenv("SECRET_KEY")
 
 #Init database engine
 engine = create_engine(os.getenv("DATABASE_URL"))
@@ -93,7 +89,7 @@ def newroute():
 
     db_titles = db.execute("SELECT title FROM routes WHERE userid = :userid", {"userid": session['userid']}).fetchall()
     duplicate = check_dbroutes(db_titles, session['title'])
-      
+
     json_output = {"title": title, "startpoint":startpoint, "endpoint": endpoint,
         "trip_time": trip_time, "distance": distance, "directions": directions, "url": url, "duplicate": duplicate}
     return jsonify(json_output)
@@ -113,14 +109,14 @@ def save():
     for line in session['directions']:
         if line != '\n':
             directions_list.append(line)
-        else: 
+        else:
             directions_list.append(" ")
     rstrip_directions = ''.join(directions_list)
-    
+
     #if inlist(db_titles, )
     #Add route to database
-    db.execute("INSERT INTO routes (userid, title, startpoint, endpoint, trip_time, distance, directions, url) VALUES (:userid, :title, :startpoint, :endpoint, :trip_time, :distance, :directions, :url)", 
-        {'userid': session['userid'], 'title': session['title'], 'startpoint': session['startpoint'], 'endpoint': session['endpoint'], 'trip_time': session['trip_time'], 'distance':  session['distance'], 
+    db.execute("INSERT INTO routes (userid, title, startpoint, endpoint, trip_time, distance, directions, url) VALUES (:userid, :title, :startpoint, :endpoint, :trip_time, :distance, :directions, :url)",
+        {'userid': session['userid'], 'title': session['title'], 'startpoint': session['startpoint'], 'endpoint': session['endpoint'], 'trip_time': session['trip_time'], 'distance':  session['distance'],
         'directions': rstrip_directions, 'url': session['url']})
     db.commit()
     return redirect(url_for('routeview'), code=307)
